@@ -1,0 +1,113 @@
+{% load humanize %}
+{% load static %}
+{% load custom_tags %}
+<div class="w-[640px] max-h-96 overflow-hidden border-none bg-ruet_dark flex my-4 text-ruet_text">
+    <div class="p-2 w-10">
+      <div class="grid grid-cols-1">
+        {% get_user_vote post.id request.user.id as user_vote %}
+        {% if user_vote %}
+            {% if user_vote.vote_type == 1 %}
+                <form method="post" action="{% url 'upvote' post.id %}">
+                    {% csrf_token %}
+                    <button type="submit">
+                        <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" fill="green">
+                            <path d="M12.781 2.375c-.381-.475-1.181-.475-1.562 0l-8 10A1.001 1.001 0 0 0 4 14h4v7a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-7h4a1.001 1.001 0 0 0 .781-1.625l-8-10zM15 12h-1v8h-4v-8H6.081L12 4.601 17.919 12H15z"/>
+                        </svg>
+                    </button>
+                </form>
+            {% else %}
+            <form method="post" action="{% url 'upvote' post.id %}">
+                {% csrf_token %}
+                <button type="submit">
+                    <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" fill="gray">
+                        <path d="M12.781 2.375c-.381-.475-1.181-.475-1.562 0l-8 10A1.001 1.001 0 0 0 4 14h4v7a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-7h4a1.001 1.001 0 0 0 .781-1.625l-8-10zM15 12h-1v8h-4v-8H6.081L12 4.601 17.919 12H15z"/>
+                    </svg>
+                </button>
+            </form>
+            {% endif %}
+        {% else %}
+        <form method="post" action="{% url 'upvote' post.id %}">
+            {% csrf_token %}
+            <button type="submit">
+                <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" fill="gray">
+                    <path d="M12.781 2.375c-.381-.475-1.181-.475-1.562 0l-8 10A1.001 1.001 0 0 0 4 14h4v7a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-7h4a1.001 1.001 0 0 0 .781-1.625l-8-10zM15 12h-1v8h-4v-8H6.081L12 4.601 17.919 12H15z"/>
+                </svg>
+            </button>
+        </form>
+        {% endif %}
+        <div class="w-6 p-2">{{ post.get_vote_count }}</div>
+        {% if user_vote %}
+            {% if user_vote.vote_type == -1 %}
+                <form method="post" action="{% url 'downvote' post.id %}">
+                    {% csrf_token %}
+                    <button>
+                        <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" fill="red">
+                            <path d="M20.901 10.566A1.001 1.001 0 0 0 20 10h-4V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v7H4a1.001 1.001 0 0 0-.781 1.625l8 10a1 1 0 0 0 1.562 0l8-10c.24-.301.286-.712.12-1.059zM12 19.399 6.081 12H10V4h4v8h3.919L12 19.399z"/>
+                        </svg>
+                    </button>
+                </form>
+            {% else %}
+                <form method="post" action="{% url 'downvote' post.id %}">
+                    {% csrf_token %}
+                    <button>
+                        <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" fill="gray">
+                            <path d="M20.901 10.566A1.001 1.001 0 0 0 20 10h-4V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v7H4a1.001 1.001 0 0 0-.781 1.625l8 10a1 1 0 0 0 1.562 0l8-10c.24-.301.286-.712.12-1.059zM12 19.399 6.081 12H10V4h4v8h3.919L12 19.399z"/>
+                        </svg>
+                    </button>
+                </form>
+            {% endif %}
+        {% else %}
+        <form method="post" action="{% url 'downvote' post.id %}">
+            {% csrf_token %}
+            <button>
+                <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" fill="gray">
+                    <path d="M20.901 10.566A1.001 1.001 0 0 0 20 10h-4V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v7H4a1.001 1.001 0 0 0-.781 1.625l8 10a1 1 0 0 0 1.562 0l8-10c.24-.301.286-.712.12-1.059zM12 19.399 6.081 12H10V4h4v8h3.919L12 19.399z"/>
+                </svg>
+            </button>
+        </form>
+        {% endif %}
+      </div>
+    </div>
+    <div class="w-[600px] bg-ruet_dark ">
+      <div class="flex space-x-2 text-sm pt-2">
+          <a href="">
+              <img class="w-8 rounded-full" src="{{ post.thread.image.url }}" />
+            </a>
+        <a class="font-bold text-white" href="">r/{{ post.thread }}</a>
+        <span class="">•</span>
+        <span class="">Posted by</span>
+        <div class="">
+          <div>
+            <a>u/{{ post.author }}</a>
+          </div>
+        </div>
+        <span>{{ post.date_posted|naturaltime }}</span>
+      </div>
+      <div class="max-h-72 overflow-hidden">
+        <div class="">
+          <a href="{% url 'post-detail' post.id %}">
+            <h2 class="py-2 text-[18px] font-semibold text-[#D7DADC]">{{ post.title }}</h2>
+          </a>
+        </div>
+        <div>
+          <a>
+            <div>
+              <div class="">{{ post.content }}</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="h-10 py-1 flex content-center">
+          <div class="hover:bg-ruet_gray px-2 mx-4">
+              <img class="inline-block mx-2" width="24px" height="24px" src="{% static 'campus/images/comment.png' %}" alt="">
+              <a class="" href="{% url 'post-detail' post.id %}"><span class="">{{ post.comments.count }} comments</span></a>
+          </div>
+          <div class="px-2 mx-4 hover:bg-ruet_gray">
+              <img class="inline-block mx-2" width="24px" height="24px" src="{% static 'campus/images/share.png' %}" alt="">
+              <button>
+                <span class="">Share</span>
+              </button>
+          </div>
+        </div>
+    </div>
+  </div>

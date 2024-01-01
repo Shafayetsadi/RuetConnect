@@ -1,0 +1,23 @@
+{% extends "campus/base.html" %} 
+{% block content %}
+{% load tailwind_filters %}
+<section class="w-64 mx-auto bg-sky-700 rounded-2xl px-8 py-6 shadow-lg">
+    <div class="flex items-center justify-between">
+    </div>
+    <div class="mt-6 w-fit mx-auto">
+        <img src="{{ user.profile.image.url }}" class="rounded-full w-28 " alt="profile picture" srcset="">
+    </div>
+
+    <div class="mt-8 ">
+        <h2 class="text-white font-bold text-2xl tracking-wide">{{ user.username }}</h2>
+    </div>
+    <p class="text-emerald-400 font-semibold mt-2.5" >
+        {{ user.email }}
+    </p>
+</section>
+<div class="flex justify-center m-10">
+  <button>
+    <a class="bg-green-700 rounded-md hover:bg-red-900 p-2" href="update/">Update</a>
+  </button>
+</div>
+{% endblock content %}

@@ -1,0 +1,18 @@
+{% extends "campus/base.html" %}
+{% block content %}
+<div class="bg-white text-black sm:border-2 rounded-lg p-4 w-[600px] my-24 mx-auto shadow-lg">
+  <h2 class="text-3xl mb-6 text-center">Create a Blog Post</h2>
+  {% load tailwind_filters %}
+  {% load crispy_forms_tags %}
+  <form class="w-full bg-white text-ruet_dark" method="POST">  
+    {% csrf_token %}
+    {{ form.media }}
+    {{ form }}
+    <div class="mb-4 w-full">
+      <button class="mb-4 px-5 py-2 w-full bg-green-600 rounded-lg text-white"type="submit">
+        Post
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock content %}

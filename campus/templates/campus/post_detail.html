@@ -1,0 +1,36 @@
+{% extends "campus/base.html" %} {% block content %} 
+{% load humanize %} 
+{% load static %}
+
+<div class="flex justify-center">
+  <div>
+    {% include "campus/post_card.html" %}
+    
+    <hr />
+    <div class="text-white">
+      {% for comment in object.comments.all %}
+      <div class="w-[640px] bg-ruet_dark">
+        <div>
+          <div class="flex space-x-2 text-sm pt-2">
+            <a href="">
+              <img
+                class="w-8 rounded-full"
+                src="{{ comment.author.profile.image.url }}"
+              />
+            </a>
+            <div class="">
+              <div>
+                <a>u/{{ comment.author }}</a>
+              </div>
+            </div>
+            <span>{{ comment.date_posted|naturaltime }}</span>
+          </div>
+        </div>
+        <p class="px-16 pb-6">{{ comment.content }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

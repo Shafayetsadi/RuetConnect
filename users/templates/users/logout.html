@@ -1,0 +1,11 @@
+{% extends "campus/base.html" %} 
+{% block content %}
+{% load tailwind_filters %}
+<div class="bg-ruet_dark sm:border-2 rounded-lg p-4 w-96 my-24 mx-auto text-white">
+  <h2 class="text-3xl mb-6 text-center">You have been logged out.</h2>
+  <p class="text-center">
+    Log in again?
+    <a class="underline text-orange-600" href="/login">Log In</a>
+  </p>
+</div>
+{% endblock content %}

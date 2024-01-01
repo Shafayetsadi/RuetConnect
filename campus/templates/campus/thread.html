@@ -1,0 +1,49 @@
+{% extends "campus/base.html" %} {% block content %} {% load humanize %}
+{% load static %}
+<div class="bg-cover bg-center w-screen h-36" style="background-image: url('../../static/campus/images/banner.jpg')">
+</div>
+
+<div class="h-[100px] bg-ruet_dark flex">
+    <div class="h-20 w-20 rounded-full bg-white relative -top-3 mx-6">
+        <img class="w-20 h-20 border-4 rounded-full" src="{% static 'campus/images/python.jpg' %}" alt="">
+    </div>
+    <div class="pt-2">
+        <h1 class="text-gray-300 text-3xl font-bold">
+            {{ thread.thread_title }}
+        </h1>
+        <h5 class="text-gray-500">r/{{ thread.thread_name }}</h5>
+    </div>
+    <div>
+        <button class="rounded-2xl bg-white w-24 h-8 font-bold mt-3 ml-6">Join</button>
+    </div>
+</div>
+
+
+
+
+
+<div class="grid grid-cols-1 justify-items-center">
+
+    <div class="bg-ruet_dark w-[640px] h-14 my-6 py-2 flex space-x-4 rounded-sm border border-[#2a2a2b]">
+        <div class="w-10 h-10 mx-2">
+            <img class="rounded-full" src="{{ user.profile.image.url }}" alt="">
+        </div>
+        <div class="border-none flex flex-grow items-stretch max-w-2xl relative pr-10">
+            <form class="flex items-center w-full">
+                <input
+                type="text"
+                placeholder="Create Post"
+                class="w-full bg-ruet_gray rounded-sm px-6 py-1 placeholder-gray-400 text-slate-300 relative border-none text-base outline-none focus:outline-none focus:ring-0 focus:border-transparent"
+                value=""
+                />
+            </form>
+          </div>
+    </div>
+
+{% for post in thread.posts.all %}
+
+{% include 'campus/post_card.html' %}
+
+{% endfor %} 
+</div>
+{% endblock content %}

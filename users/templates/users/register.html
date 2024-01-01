@@ -1,0 +1,83 @@
+{% extends "campus/base.html" %}
+{% block content %}
+<div class="sm:border-2 rounded-lg p-4 w-96 my-24 mx-auto shadow-lg bg-ruet_dark text-white">
+  <h2 class="text-3xl mb-6 text-center">Create an Account</h2>
+  {% load tailwind_filters %}
+  {% load crispy_forms_tags %}
+  <form class="w-full" method="POST">  
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="mb-4 w-full">
+      <button class="mb-4 px-5 py-2 w-full bg-green-600 rounded-lg text-white"type="submit">
+        Register
+      </button>
+      <p class="text-center">
+        Already signed up?
+        <a class="underline text-orange-600" href="/login">Log In</a>
+      </p>
+    </div>
+  </form>
+</div>
+{% endblock content %}
+
+<!-- Under csrf_token -->
+<!--
+<div class="mb-4 flex flex-col items-start w-full">
+  <span class="text-sm w-full flex items-start justify-center mb-3"><i class="text-sm mr-1"></i></span>
+  <div class="flex flex-col items-start w-full">
+    <label for="id_username" class="mb-1 font-bold">Username</label>
+    <input
+      class="w-full p-2 bg-transparent border-2 rounded-md outline-none"
+      type="text"
+      name="username"
+      id="id_username"
+      maxlength="150"
+      autofocus=""
+      required=""
+      pattern="^[a-zA-Z0-9_]+$"
+    />
+  </div>
+  <div class="flex items-start mt-2 text-gray-500 text-sm">
+    <i class="mr-2 text-xl"></i>
+  </div>
+</div>
+<div class="mb-4 flex flex-col items-start w-full">
+  <div class="flex flex-col items-start w-full">
+    <label for="id_email" class="mb-1 font-bold">Email</label>
+    <input
+      class="w-full p-2 bg-transparent border-2 rounded-md outline-none"
+      type="email"
+      name="email"
+      id="id_email"
+      maxlength="320"
+      required=""
+    />
+  </div>
+</div>
+<div class="mb-6 flex flex-col items-start w-full">
+  <div class="flex flex-col items-start w-full">
+    <label for="id_password1" class="mb-1 font-bold">Password</label>
+    <input
+      class="w-full p-2 bg-transparent border-2 rounded-md outline-none"
+      type="password"
+      name="password1"
+      id="id_password"
+      autocomplete="new-password"
+      required=""
+    />
+  </div>
+</div>
+<div class="mb-6 flex flex-col items-start w-full">
+  <div class="flex flex-col items-start w-full">
+    <label for="id_password2" class="mb-1 font-bold">Confirm Password</label>
+    <input
+      class="w-full p-2 bg-transparent border-2 rounded-md outline-none"
+      type="password"
+      name="password2"
+      id="id_password2"
+      autocomplete="new-password"
+      aria-invalid="true"
+    />
+  </div>
+</div>
+-->

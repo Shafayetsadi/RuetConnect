@@ -1,0 +1,22 @@
+{% extends "campus/base.html" %}
+{% block content %}
+<div class="sm:border-2 rounded-lg p-4 w-96 my-24 mx-auto shadow-lg bg-ruet_dark text-white">
+    <h2 class="text-3xl mb-6 text-center">Log In</h2>
+    <!-- <div class="alert mb-4"> <div class="border border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700"> <ul> <li>Please enter a correct username and password. Note that both fields may be case-sensitive.</li> </ul> </div> </div> -->
+    {% load tailwind_filters %}
+    {% load crispy_forms_tags %}
+    <form class="w-full" method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+    <div class="mb-4 w-full">
+        <button class="mb-4 px-5 py-2 w-full bg-green-600 rounded-lg text-white"type="submit">
+        Login
+        </button>
+        <p class="text-center">
+        Need an account?
+        <a class="underline text-orange-600" href="/register">Sign Up</a>
+        </p>
+    </div>
+    </form>
+</div>
+{% endblock content %}

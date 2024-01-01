@@ -1,0 +1,15 @@
+{% extends "campus/base.html" %}
+{% block content %}
+<div class="sm:border-2 rounded-lg p-4 w-96 my-24 mx-auto shadow-lg text-white bg-ruet_dark">
+  <h2 class="text-3xl mb-6 text-center">Delete Post</h2>
+  <form class="w-full" method="POST">  
+    {% csrf_token %}
+    <div class="mb-4 w-full">
+        <p>Are you sure you want to delete "{{ object.title }}"</p>
+      <button class="mb-4 px-5 py-2 w-full bg-red-600 rounded-lg text-white"type="submit">
+        Delete
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock content %}

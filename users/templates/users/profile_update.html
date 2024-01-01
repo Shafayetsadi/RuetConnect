@@ -1,0 +1,21 @@
+{% extends "campus/base.html" %} 
+{% block content %}
+{% load tailwind_filters %}
+{% load crispy_forms_tags %}
+<div class="sm:border-2 rounded-lg p-4 w-96 my-24 mx-auto shadow-lg">
+    <h2 class="text-3xl mb-6 text-center">Update Profile</h2>
+  <form class="w-full" method="POST" enctype="multipart/form-data">
+    {% csrf_token %} 
+    {{ u_form|crispy }}
+    {{ p_form|crispy }}
+    <div class="mb-4 w-full">
+      <button
+        class="mb-4 px-5 py-2 w-full bg-green-600 rounded-lg text-white"
+        type="submit"
+      >
+        Update
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock content %}
