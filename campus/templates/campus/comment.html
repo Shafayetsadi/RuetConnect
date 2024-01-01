@@ -1,0 +1,21 @@
+{% load humanize %}
+{% load static %}
+<div class="w-[640px]">
+    <div>
+      <div class="flex space-x-2 text-sm pt-2">
+        <a href="">
+          <img
+            class="w-8 rounded-full"
+            src="{{ comment.author.profile.image.url }}"
+          />
+        </a>
+        <div class="">
+          <div>
+            <a>u/{{ comment.author }}</a>
+          </div>
+        </div>
+        <span>{{ comment.date_posted|naturaltime }}</span>
+      </div>
+    </div>
+    <p class="px-16 pb-6">{{ comment.content }}</p>
+  </div>

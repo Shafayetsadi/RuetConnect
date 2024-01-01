@@ -3,18 +3,18 @@
 <div class="bg-cover bg-center w-screen h-36" style="background-image: url('../../static/campus/images/banner.jpg')">
 </div>
 
-<div class="h-[100px] bg-ruet_dark flex">
-    <div class="h-20 w-20 rounded-full bg-white relative -top-3 mx-6">
+<div class="h-[100px] flex">
+    <div class="h-20 w-20 rounded-full relative -top-3 mx-6">
         <img class="w-20 h-20 border-4 rounded-full" src="{% static 'campus/images/python.jpg' %}" alt="">
     </div>
     <div class="pt-2">
-        <h1 class="text-gray-300 text-3xl font-bold">
+        <h1 class="text-3xl font-bold">
             {{ thread.thread_title }}
         </h1>
-        <h5 class="text-gray-500">r/{{ thread.thread_name }}</h5>
+        <h5 class="">r/{{ thread.thread_name }}</h5>
     </div>
     <div>
-        <button class="rounded-2xl bg-white w-24 h-8 font-bold mt-3 ml-6">Join</button>
+        <button class="rounded-2xl w-24 h-8 font-bold mt-3 ml-6">Join</button>
     </div>
 </div>
 

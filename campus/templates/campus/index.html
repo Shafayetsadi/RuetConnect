@@ -2,7 +2,7 @@
 {% load humanize %}
 {% load static %}
 
-<div class="grid grid-cols-1 justify-items-center">
+<div class="grid grid-cols-1 justify-items-center max-w-[800px] mx-4">
   {% for post in posts %}
     {% include 'campus/post_card.html' %}
   {% endfor %}  

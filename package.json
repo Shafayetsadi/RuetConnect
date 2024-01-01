@@ -1,5 +1,10 @@
 {
   "devDependencies": {
-    "daisyui": "^4.4.19"
+    "daisyui": "^4.4.19",
+    "tailwindcss": "^3.4.0",
+    "tailwindcss-theming": "^3.0.0-beta.3"
+  },
+  "dependencies": {
+    "theme": "^0.1.0"
   }
 }

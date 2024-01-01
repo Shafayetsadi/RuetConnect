@@ -32,6 +32,12 @@ class PostListView(ListView):
     context_object_name = 'posts'
     ordering = ['-date_posted']
 
+    def get_queryset(self):
+        if self.request.user.is_authenticated:
+            return Post.objects.all()
+        else:
+            return Post.objects.filter(thread__thread_name='ruet')
+
 class PostDetailView(DetailView):
     model = Post
 
