@@ -49,6 +49,9 @@ INSTALLED_APPS = [
     'django_htmx',
     'markdownx',
     'ckeditor',
+    'django_icons',
+    'widget_tweaks',
+    'template_partials',
 ]
 
 MIDDLEWARE = [

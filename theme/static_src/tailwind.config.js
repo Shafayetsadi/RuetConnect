@@ -13,6 +13,7 @@ module.exports = {
 
         /*  Templates within theme app (<tailwind_app_name>/templates), e.g. base.html. */
         '../templates/**/*.html',
+        '../../campus/static/campus/css/*.css',
 
         /*
          * Main templates directory of the project (BASE_DIR/templates).
@@ -39,7 +40,7 @@ module.exports = {
          * Python: If you use Tailwind CSS classes in Python, uncomment the following line
          * and make sure the pattern below matches your project structure.
          */
-        // '../../**/*.py'
+        '../../**/*.py'
     ],
     theme: {
         extend: {
@@ -64,7 +65,8 @@ module.exports = {
                 'input': 'var(--input)',
                 'ring': 'var(--ring)',
                 'radius': '0.5rem',
-            }
+            },
+            
         },
     },
     plugins: [
@@ -77,5 +79,6 @@ module.exports = {
         require('@tailwindcss/typography'),
         require('@tailwindcss/line-clamp'),
         require('@tailwindcss/aspect-ratio'),
+        'prettier-plugin-tailwindcss',
     ],
 }

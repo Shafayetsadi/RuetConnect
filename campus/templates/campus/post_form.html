@@ -1,18 +1,120 @@
-{% extends "campus/base.html" %}
-{% block content %}
-<div class="rounded-lg p-4 w-[600px] my-24 mx-auto shadow-lg">
-  <h2 class="text-3xl mb-6 text-center">Create a Blog Post</h2>
-  {% load tailwind_filters %}
-  {% load crispy_forms_tags %}
-  <form class="w-full" method="POST">  
+{% extends "campus/base.html" %} {% block content %} {% load tailwind_filters %}
+{% load widget_tweaks %}
+<style>
+.EasyMDEContainer .CodeMirror,
+.EasyMDEContainer .CodeMirror.cm-s-easymde,
+.EasyMDEContainer .CodeMirror-fullscreen,
+.EasyMDEContainer .CodeMirror-fullscreen.CodeMirror-wrap,
+.EasyMDEContainer .editor-preview,
+.EasyMDEContainer .editor-preview-side,
+.EasyMDEContainer .CodeMirror-fullscreen .CodeMirror-scroll,
+.EasyMDEContainer .editor-toolbar,
+.EasyMDEContainer .editor-toolbar.fullscreen {
+    color: var(--secondary-foreground);
+    background-color: var(--secondary);
+    border-color: var(--edit-border);
+}
+
+.EasyMDEContainer .editor-toolbar > *,
+.EasyMDEContainer .editor-toolbar-fullscreen > * {
+    border-color: var(--edit-border);
+}
+
+.EasyMDEContainer .editor-toolbar .active,
+.EasyMDEContainer .editor-toolbar-fullscreen .active {
+    background-color: var(--primary);
+}
+
+.EasyMDEContainer .editor-toolbar :hover,
+.EasyMDEContainer .editor-toolbar-fullscreen :hover {
+    background-color: var(--popover);
+}
+
+.CodeMirror-cursor {
+    border-left: 1px solid var(--foreground);
+}
+
+.cm-em.CodeMirror-selectedtext {
+    background: var(--card);
+    border-top: none;
+    border-bottom: 1px solid var(--card);
+    padding: 1px;
+}
+</style>
+
+<link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+<script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+<div
+  class="rounded-xl border shadow bg-[--card] text-[--card-foreground] border-[--border] my-6 mx-auto w-[600px] min-h-[700px]"
+>
+  <div class="flex flex-col p-6 space-y-1">
+    <h3 class="font-semibold tracking-tight text-2xl">Create a post</h3>
+  </div>
+  <form id="new-post-form" action="" method="post" novalidate>
     {% csrf_token %}
-    {{ form.media }}
-    {{ form }}
-    <div class="mb-4 w-full">
-      <button class="mb-4 px-5 py-2 w-full"type="submit">
-        Post
+    {% if form.non_field_errors %}
+        <div class="border-2 border-red-900 rounded-xl m-2 text-center">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
+    <div class="grid gap-2 px-4 py-2">
+      <label
+        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        for="{{ form.title.id_for_label }}"
+      >
+       {{ form.title.label }} 
+      </label>
+      {% if form.title.errors %}
+          <div class="p-2 border-2 border-red-900 rounded-xl m-2 text-center">
+              {{ form.title.errors }}
+          </div>
+      {% endif %}
+      {% render_field form.title class='flex h-9 w-full rounded-md border border-[--input] bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[--muted-foreground] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50' %}
+    </div>
+    <div class="grid gap-2 px-4 py-2">
+      <label
+        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        for="{{ form.title.id_for_label }}"
+      >
+        {{ form.content.label }}
+      </label>
+      <div class="w-full">
+        {% if form.content.errors %}
+            <div class="p-2 border-2 border-red-900 rounded-xl m-2 text-center">
+                {{ form.content.errors }}
+            </div>
+        {% endif %}
+        {{ form.content }}
+      </div>
+    </div>
+    <div class="flex items-center p-6 pt-0">
+      <button
+        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[--ring] disabled:pointer-events-none disabled:opacity-50 bg-[--primary] text-[--primary-foreground] shadow hover:bg-[--primary]/90 h-9 px-4 py-2 w-full"
+      >
+        Create Post
       </button>
     </div>
   </form>
 </div>
+
+<script>
+  editor = new EasyMDE({
+    element: document.getElementById("id_content"),
+    placeholder: "You can write markdown here...",
+    spellChecker: false,
+    onToggleFullScreen: (isFullScreen) => {
+      document.getElementById("header").classList.toggle("hidden", isFullScreen);
+    },
+  });
+  let content;
+  let contentField;
+  editor.codemirror.on("change", () => {
+    content = editor.value();
+    contentField = document.getElementById("id_content");
+    contentField.value = content;
+  });
+  document.getElementById("new-post-form").addEventListener("submit", (e) => {
+    
+  });
+</script>
 {% endblock content %}

@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  @apply transition-colors duration-900;
-}
 
 @layer base {
   :root {
@@ -27,6 +24,7 @@
     --border: hsl(240 5.9% 90%);
     --input: hsl(240 5.9% 90%);
     --ring: hsl(142.1 76.2% 36.3%);
+    --edit-border: #424242;
   }
 
   :root[data-theme='dark'] {
@@ -49,5 +47,13 @@
     --border: hsl(240 3.7% 15.9%);
     --input: hsl(240 3.7% 15.9%);
     --ring: hsl(142, 72%, 29%);
+    --edit-border: #424242;
+  }
+}
+
+@layer components {
+  .prose-personal {
+    @apply prose prose-h1:2xl prose-h2:xl prose-h3:lg prose-h4:lg prose-h5:lg prose-h6:lg prose-3xl prose-4xl prose-5xl prose-6xl;
+
   }
 }

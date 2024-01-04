@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from ckeditor.fields import RichTextField
 from markdownx.models import MarkdownxField
-
+from nh3 import clean
+import marko
 # Create your models here.
 
 class Thread(models.Model):
@@ -27,9 +28,9 @@ class Thread(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
-    # content = models.TextField()
-    content = RichTextField(blank=True, null=True)
-    body = MarkdownxField(blank=True, null=True)
+    content = models.TextField()
+    # content = RichTextField(blank=True, null=True)
+    # content = MarkdownxField(blank=True, null=True)
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     thread = models.ForeignKey(Thread, related_name='posts', on_delete=models.CASCADE, null=True)
@@ -46,14 +47,16 @@ class Post(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.thread:
-            default_thread, created = Thread.objects.get_or_create(name='ruet')
+            default_thread, created = Thread.objects.get_or_create(thread_name='ruet')
             self.thread = default_thread
+        # self.content = clean(self.content)
+        self.content = marko.convert(self.content)
         super().save(*args, **kwargs)
 
 
 class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.TextField()
+    content = models.TextField(blank=True, null=True)
     date_posted = models.DateTimeField(default=timezone.now)
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE, default=Thread)
 

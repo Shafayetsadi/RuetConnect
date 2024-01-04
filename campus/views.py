@@ -11,7 +11,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from django.db.models import F
 from django.http import Http404
-from .models import Post, Vote, Thread
+from .models import Post, Vote, Thread, Comment
+from django import forms
+from .forms import PostForm, CommentForm
 
 # Create your views here.
 
@@ -41,17 +43,42 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
 
+    def get_context_data(self, **kwargs):
+        context = super(PostDetailView, self).get_context_data(**kwargs)
+        context['comment_form'] = CommentForm()
+        return context
+
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'content', 'body']
+    form_class = PostForm
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+class CommentCreateView(LoginRequiredMixin, CreateView):
+    model = Comment
+    form_class = CommentForm
+
+    def form_valid(self, form):
+        data = form.cleaned_data.get('content').strip()
+        if data == "" or data == "<p><br></p>":
+            return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
+
+        form.instance.author = self.request.user
+        form.instance.post = Post.objects.get(pk=self.kwargs['pk'])
+        response = super().form_valid(form)
+        if self.request.headers.get('HX-Request'):
+            return render(self.request, 'campus/post_detail.html#comment-partial', {'comment': self.object})
+        return response
+
+    def get_success_url(self):
+        return self.object.post.get_absolute_url()
+
+
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'content', 'body']
+    fields = ['title', 'content']
 
     def form_valid(self, form):
         form.instance.author = self.request.user

@@ -1,5 +1,5 @@
 {% load humanize %} {% load static %} {% load custom_tags %}
-<div class="w-full max-h-96 overflow-hidden m-4 bg-[--card] rounded-md shadow-md px-4 py-2">
+<div class="w-full m-4 bg-[--card] rounded-md px-4 py-2">
   <div class="flex gap-1 text-sm">
     <a href="">
       <img class="w-8 rounded-full" src="{{ post.thread.image.url }}" />
@@ -14,10 +14,10 @@
     </div>
     <span>{{ post.date_posted|naturaltime }}</span>
   </div>
-  <div class="max-h-72 overflow-hidden">
+  <div class="">
     <div class="">
       <a href="{% url 'post-detail' post.id %}">
-        <h2 class="py-2 text-[18px] font-semibold">
+        <h2 class="py-2 text-xl font-semibold">
           {{ post.title }}
         </h2>
       </a>
@@ -25,13 +25,15 @@
     </div>
     <div>
       <a>
-        <div class="py-2 text-muted-foreground">
-          <div>{{ post.content }}</div>
+        <div class="my-2 text-muted-foreground overflow-hidden max-h-{{height}} w-full">
+          <div id="post-content" class="prose max-w-none prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-h4:text-base prose-headings::font-bold prose-headings:mt-0 prose-headings:mb-4">
+              {{ post.content|safe }}
+          </div>
         </div>
       </a>
     </div>
   </div>
-  <div class="flex justify-between items-center m-2">
+  <div class="flex justify-between items-center text-muted-foreground font-bold">
     {% include 'campus/vote.html' %}
     <div>
       <a href="{% url 'post-detail' post.id %}">
