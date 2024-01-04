@@ -32,7 +32,7 @@ class Post(models.Model):
     # content = RichTextField(blank=True, null=True)
     # content = MarkdownxField(blank=True, null=True)
     date_posted = models.DateTimeField(default=timezone.now)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, related_name='posts', on_delete=models.CASCADE)
     thread = models.ForeignKey(Thread, related_name='posts', on_delete=models.CASCADE, null=True)
     voters = models.ManyToManyField(User, through='Vote', related_name='voted_posts')
 

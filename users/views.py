@@ -44,4 +44,8 @@ def update_profile(request):
 
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+    posts = request.user.posts.all()
+    context = {
+            'posts': posts
+            }
+    return render(request, 'users/profile.html', context)

@@ -7,8 +7,13 @@ from PIL import Image
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
-    first_name = models.CharField(max_length=100, default='Anonymous')
-    last_name = models.CharField(max_length=100, default='Anonymous')
+    bio = models.TextField(default='')
+    twitter = models.CharField(max_length=50, default='')
+    facebook = models.CharField(max_length=50, default='')
+    instagram = models.CharField(max_length=50, default='')
+    linkedin = models.CharField(max_length=50, default='')
+    github = models.CharField(max_length=50, default='')
+    birth_date = models.DateField(default='1901-01-01')
 
 
     def __str__(self):

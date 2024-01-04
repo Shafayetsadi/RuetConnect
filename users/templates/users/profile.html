@@ -1,23 +1,54 @@
 {% extends "campus/base.html" %} 
 {% block content %}
 {% load tailwind_filters %}
-<section class="w-64 mx-auto bg-sky-700 rounded-2xl px-8 py-6 shadow-lg">
-    <div class="flex items-center justify-between">
-    </div>
-    <div class="mt-6 w-fit mx-auto">
-        <img src="{{ user.profile.image.url }}" class="rounded-full w-28 " alt="profile picture" srcset="">
+<section class="w-[400px] pb-12 bg-secondary mx-auto mt-16 p-4 rounded-2xl">
+    <div class="flex flex-col items-center justify-between">
+    <div>
+        <img src="{{ user.profile.image.url }}" class="rounded-full w-32 border-ring border-4" alt="profile picture" srcset="">
     </div>
 
-    <div class="mt-8 ">
-        <h2 class="text-white font-bold text-2xl tracking-wide">{{ user.username }}</h2>
+    <div class="py-2">
+        <h2 class="text-secondary-foreground font-bold text-2xl tracking-wider">{{ user.username }}</h2>
     </div>
-    <p class="text-emerald-400 font-semibold mt-2.5" >
-        {{ user.email }}
-    </p>
+
+    <div>
+      <h3 class="text-primary text-xl"> {{ user.email }} </h3>
+    </div>
+
+    <div>
+      <h4>Cake day: {{ user.profile.birth_date }}</h4>
+    </div>
+
+    <div class="">
+      <a href="" class="btn btn-link">LinkedIn</a>
+      <a href="" class="btn btn-link">Github</a>
+      <a href="" class="btn btn-link">Twitter</a>
+      <a href="" class="btn btn-link">Facebook</a>
+      <a href="" class="btn btn-link">Instagram</a>
+    </div>
+
+    <div class="w-full text-left">
+      <h3 class="text-2xl font-bold">Bio</h3>
+      {% if user.profile.bio == "" %}
+        <p class="text-secondary-foreground">You got to add some some bio.</p>
+      {% else %}
+        <p class="text-secondary-foreground"> {{ user.profile.bio }} </p>
+      {% endif %}
+      
+    </div>
+
+    </div>
 </section>
-<div class="flex justify-center m-10">
+<div class="flex justify-center my-6">
   <button>
-    <a class="bg-green-700 rounded-md hover:bg-red-900 p-2" href="update/">Update</a>
+    <a class="btn btn-primary" href="update/">Update Profile</a>
   </button>
 </div>
+
+<div class="grid grid-cols-1 justify-items-center max-w-[800px] mx-4">
+  {% for post in posts %}
+    {% include 'campus/post_card.html' with height="max-h-[350px]" %}
+  {% endfor %}  
+</div>
+
 {% endblock content %}

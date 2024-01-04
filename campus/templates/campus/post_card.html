@@ -25,9 +25,11 @@
     </div>
     <div>
       <a>
-        <div class="my-2 text-muted-foreground overflow-hidden max-h-{{height}} w-full">
-          <div id="post-content" class="prose max-w-none prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-h4:text-base prose-headings::font-bold prose-headings:mt-0 prose-headings:mb-4">
+        <div class="overflow-y-hidden min-h-12 relative my-2 text-muted-foreground {{height}} w-full fade-out">
+          <div class="">
+            <div id="post-content" class="prose max-w-none prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg prose-h4:text-base prose-headings::font-bold prose-headings:mt-0 prose-headings:mb-4">
               {{ post.content|safe }}
+            </div>
           </div>
         </div>
       </a>
@@ -37,7 +39,7 @@
     {% include 'campus/vote.html' %}
     <div>
       <a href="{% url 'post-detail' post.id %}">
-        <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2">
+        <button class="btn btn-outline">
           <span>{{ post.comments.count }} comments</span>
         </button>
       </a
@@ -45,7 +47,7 @@
     </div>
     <div>
       <a href="{% url 'post-detail' post.id %}">
-        <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2">
+        <button class="btn btn-ghost">
           Share
         </button>
       </a
@@ -54,7 +56,7 @@
     <div>
       {% if post.author == user %}
       <a href="{% url 'post-update' post.id %}">
-        <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2">
+        <button class="btn btn-link">
           Edit
         </button>
       </a>
