@@ -32,6 +32,7 @@ urlpatterns = [
     path('profile/update/', user_views.update_profile, name='update-profile'),
 
     path('__reload__/', include('django_browser_reload.urls', namespace='django_browser_reload')),
+    path("select2/", include("django_select2.urls")),
 ]
 
 if settings.DEBUG:

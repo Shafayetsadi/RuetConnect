@@ -2,12 +2,23 @@
 {% block content %}
 {% load tailwind_filters %}
 {% load crispy_forms_tags %}
-<div class="sm:border-2 rounded-lg p-4 w-96 my-24 mx-auto shadow-lg">
+{% load widget_tweaks %}
+<div class="border-border rounded-lg p-4 w-96 mt-6 bg-card text-card-foreground">
     <h2 class="text-3xl mb-6 text-center">Update Profile</h2>
-  <form class="w-full" method="POST" enctype="multipart/form-data">
+  <form class="w-full text-card-foreground" method="POST" enctype="multipart/form-data">
     {% csrf_token %} 
-    {{ u_form|crispy }}
-    {{ p_form|crispy }}
+    {% for field in u_form %}
+      <label class="font-semibold" for="{{ field.id_for_label }}">
+        {{ field.label }}
+      </label>
+      {% render_field field class="input" %}
+    {% endfor %}
+    {% for field in p_form %}
+      <label class="font-semibold" for="{{ field.id_for_label }}">
+        {{ field.label }}
+      </label>
+      {% render_field field class="input" %}
+    {% endfor %}
     <div class="mb-4 w-full">
       <button
         class="mb-4 px-5 py-2 w-full bg-green-600 rounded-lg text-white"

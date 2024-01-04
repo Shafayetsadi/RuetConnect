@@ -33,7 +33,7 @@ class Post(models.Model):
     # content = MarkdownxField(blank=True, null=True)
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, related_name='posts', on_delete=models.CASCADE)
-    thread = models.ForeignKey(Thread, related_name='posts', on_delete=models.CASCADE, null=True)
+    thread = models.ForeignKey(Thread, related_name='posts', on_delete=models.CASCADE)
     voters = models.ManyToManyField(User, through='Vote', related_name='voted_posts')
 
     def get_vote_count(self):

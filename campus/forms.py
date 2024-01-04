@@ -1,11 +1,15 @@
 from django import forms
-from .models import Post, Comment
+from .models import Post, Comment, Thread
 
 class PostForm(forms.ModelForm):
+    thread = forms.ModelChoiceField(queryset=Thread.objects.all(), empty_label=None)
     class Meta:
         model = Post
-        fields = ['title', 'content']
+        fields = ['thread', 'title', 'content']
         widgets = {
+            'thread': forms.Select(attrs={
+                'class': 'bg-red-500 pb-1 mb-[21px]',
+            }),
             'title': forms.TextInput(attrs={
                 'palceholder': 'Title',
             }),

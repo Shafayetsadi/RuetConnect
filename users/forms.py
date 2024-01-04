@@ -16,16 +16,11 @@ class UserRegisterForm(UserCreationForm):
 
 
 class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField()
-
-    # Meta class gives us a nested namespace for configurations and keeps the configurations in one place
     class Meta:
-        # Model that will be affected
         model = User
-        # Fields that will be shown on the form and in what order
-        fields = ['username', 'email']
+        fields = ['first_name', 'last_name']
 
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['image']
+        fields = ['bio', 'birth_date', 'image']

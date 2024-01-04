@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django_icons',
     'widget_tweaks',
     'template_partials',
+    'django_select2',
 ]
 
 MIDDLEWARE = [
