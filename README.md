@@ -16,3 +16,6 @@ Ruet has many clubs and organizations among our students, teachers,  and office 
 - HTMX
 - Tailwind CSS
 - Alpinejs
+
+### ToDo
+- [ ] Slug URL for Posts
