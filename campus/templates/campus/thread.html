@@ -1,6 +1,6 @@
 {% extends "campus/base.html" %} {% block content %} {% load humanize %}
 {% load static %}
-<div class="bg-cover bg-center w-screen h-36" style="background-image: url('../../static/campus/images/banner.jpg')">
+<div class="bg-cover bg-center w-screen h-36" style="background-image: url('{% static "campus/images/banner.jpg" %}')">
 </div>
 
 <div class="h-[100px] flex">
@@ -17,10 +17,6 @@
         <button class="rounded-2xl w-24 h-8 font-bold mt-3 ml-6">Join</button>
     </div>
 </div>
-
-
-
-
 
 <div class="grid grid-cols-1 justify-items-center">
 
@@ -39,11 +35,10 @@
             </form>
           </div>
     </div>
-
-{% for post in thread.posts.all %}
-
-{% include 'campus/post_card.html' %}
-
-{% endfor %} 
+    <div class="grid grid-cols-1 justify-items-center max-w-[800px] mx-4">
+        {% for post in thread.posts.all %}
+            {% include 'campus/post_card.html' with height="max-h-[350px]" %}
+        {% endfor %} 
+    </div>
 </div>
 {% endblock content %}

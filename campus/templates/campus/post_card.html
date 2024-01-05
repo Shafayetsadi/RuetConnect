@@ -4,7 +4,7 @@
     <a href="">
       <img class="w-8 rounded-full" src="{{ post.thread.image.url }}" />
     </a>
-    <a class="font-bold px-2" href="">r/{{ post.thread }}</a>
+    <a class="font-bold px-2" href="{% url 'campus-thread' post.thread %}">r/{{ post.thread }}</a>
     <span class="">•</span>
     <span class="">Posted by</span>
     <div class="">
