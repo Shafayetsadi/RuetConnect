@@ -17,5 +17,5 @@ Ruet has many clubs and organizations among our students, teachers,  and office 
 - Tailwind CSS
 - Alpinejs
 
-### ToDo
+### Todo
 - [ ] Slug URL for Posts
