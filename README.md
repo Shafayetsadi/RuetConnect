@@ -14,7 +14,7 @@ I believe this initiative will not only streamline communication but also foster
 - Moderation Tools
 - Messaging and Chat
 
-*It is going to be a reddit clone for my university :sweat_smile::grin::wink:.*
+*It is going to be a reddit clone for my university* :sweat_smile::grin::wink:.
 
 ### Tools:
 - Python
