@@ -1,33 +1,35 @@
 {% extends "campus/base.html" %}
 {% block content %}
-{% load widget_tweaks %}
-<div class="border-2 border-[--ring] rounded-lg p-4 w-96 my-6 mx-auto shadow-lg bg-[--card] text-[--card-foreground]">
+  {% load widget_tweaks %}
+  <div class="border-2 border-[--ring] rounded-lg p-4 w-96 my-6 mx-auto shadow-lg bg-[--card] text-[--card-foreground]">
     <h2 class="text-3xl font-bold mb-2 text-center">Log In</h2>
     {% load tailwind_filters %}
     {% load crispy_forms_tags %}
     <form class="w-full" method="POST">
-        {% csrf_token %}
-        {% if form.non_field_errors %}
-        <div class="bg-card rounded-xl p-2 text-destructive border-destructive border-2"> {{ form.non_field_errors }} </div>
-        {% endif %}
-        <label class="font-semibold" for="{{ form.username.id_for_label }}">
-            {{ form.username.label }}
-        </label>
-        {% render_field form.username class="input" %}
-        <label class="font-semibold" for="{{ form.password.id_for_label }}">
-            {{ form.password.label }}
-        </label>
-        {% render_field form.password class="input" %}
-        
-    <div class="my-4 w-full">
-        <button class="px-5 py-2 font-semibold w-full bg-[--primary] rounded-lg text-[--primary-foreground]"type="submit">
-        Login
+      {% csrf_token %}
+      {% if form.non_field_errors %}
+        <div
+          class="bg-card rounded-xl p-2 text-destructive border-destructive border-2"> {{ form.non_field_errors }} </div>
+      {% endif %}
+      <label class="font-semibold" for="{{ form.username.id_for_label }}">
+        {{ form.username.label }}
+      </label>
+      {% render_field form.username class="input" %}
+      <label class="font-semibold" for="{{ form.password.id_for_label }}">
+        {{ form.password.label }}
+      </label>
+      {% render_field form.password class="input" %}
+
+      <div class="my-4 w-full">
+        <button class="px-5 py-2 font-semibold w-full bg-[--primary] rounded-lg text-[--primary-foreground]"
+                type="submit">
+          Login
         </button>
         <p class="text-center mt-2">
-        Need an account?
-        <a class="underline text-[--primary]" href="/register">Sign Up</a>
+          Need an account?
+          <a class="underline text-[--primary]" href="/register">Sign Up</a>
         </p>
-    </div>
+      </div>
     </form>
-</div>
+  </div>
 {% endblock content %}
