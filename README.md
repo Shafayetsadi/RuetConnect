@@ -1,5 +1,9 @@
 # RUET CampusConnect
-Ruet has many clubs and organizations among our students, teachers,  and office staff. We have various clubs like ASSR, PSR, RUETDC, etc. We also have associations for different zillas. Generally every club and associations have their facebook or messenger group for their internal communication. But facebook is a vast platform that has some demerits. We tend to waste a lot of time on facebook by watching videos and reels. I want to develop a comprehensive web application that serves as a centralized communication and collaboration platform for the diverse array of clubs and organizations within RUET. This web app will provide a dynamic and interactive space for students to engage in discussions, share information, and foster a sense of community within each club and across the university as a whole.
+Ruet boasts a vibrant tapestry of clubs and organizations, uniting our students, teachers, and office staff in a rich array of activities. From ASSR to PSR to RUETDC, our diverse clubs and associations, including those for different zillas, form the heart of our community. While many of these groups currently rely on Facebook or Messenger for internal communication, the allure of these platforms can sometimes lead to time wasted on videos and reels.
+
+To address this, I aspire to create a comprehensive web application that will serve as a centralized communication and collaboration platform for all our clubs and organizations. This innovative web app will provide a dynamic and interactive space for students to engage in discussions, share valuable information, and cultivate a strong sense of community within each club and across the entire university.
+
+I believe this initiative will not only streamline communication but also foster a more focused and purposeful interaction among our community members. If you share my vision, I would greatly appreciate your support and input as we embark on this exciting journey together.
 
 ### Key Features:
 - User Authentication and Profile Management
@@ -9,6 +13,8 @@ Ruet has many clubs and organizations among our students, teachers,  and office 
 - Integration of Multimedia and Event Management
 - Moderation Tools
 - Messaging and Chat
+
+It is going to be a reddit clone for my university :grin: :sweat_smile: :wink``:
 
 ### Tools:
 - Python
